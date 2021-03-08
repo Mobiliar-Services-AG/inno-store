@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {GetAllOrdersGQL} from '../__generated__/graphql.types';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'inno-store-webui';
+  public readonly orders$ = this.allOrdersGQL.fetch().pipe(
+    map(res => res.data.orders),
+  )
+
+  constructor(private allOrdersGQL: GetAllOrdersGQL) {}
 }

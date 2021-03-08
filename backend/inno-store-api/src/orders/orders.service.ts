@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { Order } from '../__generated__/graphql.schema';
+import {Injectable} from '@nestjs/common';
+import {Order} from '../__generated__/graphql.schema';
 
 @Injectable()
 export class OrdersService {
@@ -9,6 +9,10 @@ export class OrdersService {
         id: '1',
         name: 'Order 1',
       },
+      {
+        id: '2',
+        name: 'Order 2',
+      }
     ]);
   }
 }
