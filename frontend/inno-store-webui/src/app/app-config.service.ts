@@ -1,7 +1,6 @@
-import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { isPlatformServer } from '@angular/common';
-import { REQUEST } from '@nguniversal/express-engine/tokens';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {isPlatformServer} from '@angular/common';
 import {AppConfig, getAppConfigFromProcessEnv} from './app-config';
 
 @Injectable({
@@ -12,10 +11,7 @@ export class AppConfigService {
 
   constructor(
     private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: string,
-    @Optional()
-    @Inject(REQUEST)
-    private request: { hostname: string; headers: string[] } | undefined,
+    @Inject(PLATFORM_ID) private platformId: string
   ) {}
 
   async load(): Promise<AppConfig> {
