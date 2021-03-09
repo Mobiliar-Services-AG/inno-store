@@ -5,11 +5,15 @@ export interface AppConfig {
 }
 
 export function getAppConfigFromProcessEnv(): AppConfig {
-  if (process.env.API_URL) {
-    const appConfig:AppConfig = {
-      api: process.env.API_URL
-    }
-    console.info(' got appconfig from env variables: ' + JSON.stringify(appConfig))
+  // @ts-ignore
+  const api = process?.env?.API_URL;
+  if (api) {
+    const appConfig: AppConfig = {
+      api,
+    };
+    console.info(
+      ' got appconfig from env variables: ' + JSON.stringify(appConfig),
+    );
     return appConfig;
   } else {
     return (localDevAppConfig as any).default;
