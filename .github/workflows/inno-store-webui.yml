@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'frontend/inno-store-webui/**'
+      - 'inno-store-webui/**'
       - '.github/workflows/inno-store-webui.yml'
   workflow_dispatch:
 
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: frontend/inno-store-webui
+        working-directory: inno-store-webui
 
     steps:
     - uses: actions/checkout@master
@@ -35,4 +35,4 @@ jobs:
         app-name: 'inno-store-webui'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_5567a2817e864fa49c60db8702ea63ed }}
-        package: 'frontend/inno-store-webui'
+        package: 'inno-store-webui'

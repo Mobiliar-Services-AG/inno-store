@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'backend/inno-store-api/**'
+      - 'inno-store-api/**'
       - '.github/workflows/inno-store-api.yml'
   workflow_dispatch:
 
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: backend/inno-store-api
+        working-directory: inno-store-api
 
     steps:
       - uses: actions/checkout@master
@@ -36,4 +36,4 @@ jobs:
           app-name: 'inno-store-api'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_5ab76f461a6f461ca2089c576156cee1 }}
-          package: 'backend/inno-store-api'
+          package: 'inno-store-api'
