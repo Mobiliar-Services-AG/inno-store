@@ -9,7 +9,7 @@ export function getAppConfigFromProcessEnv(): AppConfig {
     const appConfig:AppConfig = {
       api: process.env.API_URL
     }
-    console.info(' got appconfig from env variables: ' + process.env.APP_CONFIG)
+    console.info(' got appconfig from env variables: ' + JSON.stringify(appConfig))
     return appConfig;
   } else {
     return (localDevAppConfig as any).default;
