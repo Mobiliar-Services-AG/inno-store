@@ -10,7 +10,9 @@
     "start:webui:ssr" : "cd inno-store-webui && npm run dev:ssr",
     "build": "run-p build:api build:webui",
     "build:api": "cd inno-store-api && npm run build",
-    "build:webui": "cd inno-store-webui && npm run build"
+    "build:webui": "cd inno-store-webui && npm run build",
+    "graphql:api": "cd inno-store-api && npm run graphql",
+    "graphql:webui": "cd inno-store-webui && npm run graphql"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.17.0",

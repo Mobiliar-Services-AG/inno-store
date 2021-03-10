@@ -3,16 +3,7 @@ import { Order } from '../__generated__/graphql.schema';
 
 @Injectable()
 export class OrdersService {
-  private orders: Order[] = [
-    {
-      id: '1',
-      name: 'Order 1',
-    },
-    {
-      id: '2',
-      name: 'Order 2',
-    },
-  ];
+  private orders: Order[] = [];
 
   findAll(): Promise<Order[]> {
     return Promise.resolve(this.orders);

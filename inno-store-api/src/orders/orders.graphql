@@ -1,5 +1,5 @@
 type Query {
-  orders: [Order]
+  orders: [Order!]!
   order(id: ID!): Order
 }
 
@@ -12,10 +12,11 @@ type Subscription {
 }
 
 type Order {
-  id: String
-  name: String
+  id: String!
+  name: String!
 }
 
 input CreateOrderInput {
-  name: String
+  id: String!
+  name: String!
 }

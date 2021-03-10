@@ -18,7 +18,7 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  orders?: Maybe<Array<Maybe<Order>>>;
+  orders: Array<Order>;
   order?: Maybe<Order>;
 };
 
@@ -34,7 +34,7 @@ export type Mutation = {
 
 
 export type MutationCreateOrderArgs = {
-  createOrderInput?: Maybe<CreateOrderInput>;
+  order?: Maybe<CreateOrderInput>;
 };
 
 export type Subscription = {
@@ -44,12 +44,13 @@ export type Subscription = {
 
 export type Order = {
   __typename?: 'Order';
-  id?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type CreateOrderInput = {
-  name?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type GetAllOrdersQueryVariables = Exact<{ [key: string]: never; }>;
@@ -57,10 +58,34 @@ export type GetAllOrdersQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAllOrdersQuery = (
   { __typename?: 'Query' }
-  & { orders?: Maybe<Array<Maybe<(
+  & { orders: Array<(
     { __typename?: 'Order' }
     & Pick<Order, 'id' | 'name'>
-  )>>> }
+  )> }
+);
+
+export type CreateOrderMutationVariables = Exact<{
+  order: CreateOrderInput;
+}>;
+
+
+export type CreateOrderMutation = (
+  { __typename?: 'Mutation' }
+  & { createOrder?: Maybe<(
+    { __typename?: 'Order' }
+    & Pick<Order, 'id' | 'name'>
+  )> }
+);
+
+export type OnOrderCreatedSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type OnOrderCreatedSubscription = (
+  { __typename?: 'Subscription' }
+  & { orderCreated?: Maybe<(
+    { __typename?: 'Order' }
+    & Pick<Order, 'id' | 'name'>
+  )> }
 );
 
 export const GetAllOrdersDocument = gql`
@@ -77,6 +102,44 @@ export const GetAllOrdersDocument = gql`
   })
   export class GetAllOrdersGQL extends Apollo.Query<GetAllOrdersQuery, GetAllOrdersQueryVariables> {
     document = GetAllOrdersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateOrderDocument = gql`
+    mutation CreateOrder($order: CreateOrderInput!) {
+  createOrder(order: $order) {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateOrderGQL extends Apollo.Mutation<CreateOrderMutation, CreateOrderMutationVariables> {
+    document = CreateOrderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const OnOrderCreatedDocument = gql`
+    subscription OnOrderCreated {
+  orderCreated {
+    id
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class OnOrderCreatedGQL extends Apollo.Subscription<OnOrderCreatedSubscription, OnOrderCreatedSubscriptionVariables> {
+    document = OnOrderCreatedDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

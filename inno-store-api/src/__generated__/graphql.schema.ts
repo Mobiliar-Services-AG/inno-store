@@ -7,7 +7,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export class CreateOrderInput {
-    name?: string;
+    id: string;
+    name: string;
 }
 
 export abstract class IQuery {
@@ -25,6 +26,6 @@ export abstract class ISubscription {
 }
 
 export class Order {
-    id?: string;
-    name?: string;
+    id: string;
+    name: string;
 }

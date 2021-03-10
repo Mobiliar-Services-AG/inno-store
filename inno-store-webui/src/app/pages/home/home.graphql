@@ -5,7 +5,14 @@ query GetAllOrders {
   }
 }
 
-subscription onOrderCreated {
+mutation CreateOrder($order: CreateOrderInput!) {
+  createOrder(order: $order) {
+    id,
+    name
+  }
+}
+
+subscription OnOrderCreated {
   orderCreated {
     id
     name

@@ -29,7 +29,7 @@ export function createApollo(
 
         // Create a WebSocket link:
         const ws = new WebSocketLink({
-          uri: `ws://localhost:5000/`,
+          uri: appConfigServie.appConfig.apiWs,
           options: {
             reconnect: true,
           },
