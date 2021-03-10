@@ -13,7 +13,10 @@
     "build:webui": "cd inno-store-webui && npm run build",
     "graphql:api": "cd inno-store-api && npm run graphql",
     "graphql:webui": "cd inno-store-webui && npm run graphql",
-    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|ts|html|css|json)\""
+    "lint": "run-s lint:api lint:webui",
+    "lint:api": "cd inno-store-api && npm run lint",
+    "lint:webui": "cd inno-store-webui && npm run lint",
+    "prettier": "prettier --write --ignore-path .gitignore \"**/*.+(js|ts|html|css|json)\""
   },
   "devDependencies": {
     "@types/node": "^14.14.33",

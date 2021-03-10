@@ -153,9 +153,7 @@
           "options": {
             "browserTarget": "inno-store-webui:build:production",
             "serverTarget": "inno-store-webui:server:production",
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {}
