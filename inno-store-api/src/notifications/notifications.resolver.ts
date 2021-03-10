@@ -1,5 +1,5 @@
-import {Resolver, Subscription} from '@nestjs/graphql';
-import {PubSubService, PubSubTrigger} from '../core/pubsub/pub-sub.service';
+import { Resolver, Subscription } from '@nestjs/graphql';
+import { PubSubService, PubSubTrigger } from '../core/pubsub/pub-sub.service';
 
 @Resolver('Notification')
 export class NotificationsResolver {
