@@ -28,9 +28,7 @@ export class HomeComponent implements OnInit {
     orderCreatedResult$
       .pipe(map((result) => result.data?.orderCreated))
       .subscribe(async (newOrder) => {
-        this.notifications.push(
-          `new order ${newOrder?.id} created. fetching all again ..`,
-        );
+        this.notifications.push(`Order ${newOrder?.id} was created in backend`);
         this.orders = await this.fetchOrders();
       });
   }
