@@ -3,10 +3,12 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { OrdersModule } from './orders/orders.module';
+import { AppConfigModule } from './app-config/app-config.module';
 
 @Module({
   imports: [
     OrdersModule,
+    AppConfigModule,
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       installSubscriptionHandlers: true,

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Order } from '../__generated__/graphql.schema';
-import { CosmosService } from '../common/cosmos.service';
 import { FeedResponse } from '@azure/cosmos';
+import { CosmosService } from '../db/cosmos.service';
 
 @Injectable()
 export class OrderRepository {

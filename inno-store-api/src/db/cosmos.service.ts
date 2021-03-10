@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Container, CosmosClient } from '@azure/cosmos';
-import { ConfigService } from '@nestjs/config';
+import { APP_CONFIG, AppConfig } from '../app-config/app-config.types';
 
 const defaultDatabase = 'inno-store';
 
@@ -8,7 +8,7 @@ const defaultDatabase = 'inno-store';
 export class CosmosService {
   private client: CosmosClient;
 
-  constructor(private configService: ConfigService) {}
+  constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) {}
 
   container(containerId: string): Promise<Container> {
     return this.getContainer(defaultDatabase, containerId);
@@ -20,8 +20,8 @@ export class CosmosService {
   ): Promise<Container> {
     if (!this.client) {
       this.client = new CosmosClient({
-        endpoint: this.configService.get('CUSTOMCONNSTR_COSMOSDB_ENDPOINT'),
-        key: this.configService.get('CUSTOMCONNSTR_COSMOSDB_KEY'),
+        endpoint: this.appConfig.cosmosDb.endpoint,
+        key: this.appConfig.cosmosDb.key,
       });
     }
     await this.client.databases.createIfNotExists({
