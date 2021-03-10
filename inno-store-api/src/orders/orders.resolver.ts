@@ -1,15 +1,20 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
-import { OrderRepository } from './order-repository';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { OrdersGuard } from './orders.guard';
-import { CreateOrderInput, Order } from '../__generated__/graphql.schema';
-import { PubSub } from 'apollo-server-express';
-
-const pubSub = new PubSub();
+import {
+  CreateOrderInput,
+  Notification,
+  Order,
+} from '../__generated__/graphql.schema';
+import { OrdersRepository } from './orders.repository';
+import { PubSubService, PubSubTrigger } from '../core/pubsub/pub-sub.service';
 
 @Resolver('Order')
 export class OrdersResolver {
-  constructor(private readonly orderRepository: OrderRepository) {}
+  constructor(
+    private orderRepository: OrdersRepository,
+    private pubSub: PubSubService,
+  ) {}
 
   @Query('orders')
   @UseGuards(OrdersGuard)
@@ -20,12 +25,10 @@ export class OrdersResolver {
   @Mutation()
   async createOrder(@Args('order') orderInput: CreateOrderInput) {
     const order = await this.orderRepository.createOrder(orderInput);
-    pubSub.publish('orderCreated', { orderCreated: order });
+    this.pubSub.publish<Notification>(PubSubTrigger.NOTIFICATION_ADDED, {
+      text: `Order with id ${order.id} inserted in DB`,
+      createdAt: `${new Date().getTime()}`,
+    });
     return order;
-  }
-
-  @Subscription()
-  orderCreated() {
-    return pubSub.asyncIterator('orderCreated');
   }
 }

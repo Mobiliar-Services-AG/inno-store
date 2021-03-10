@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   CreateOrderGQL,
   GetAllOrdersGQL,
-  OnOrderCreatedGQL,
+  OnNotificationGQL,
   Order,
 } from '../../../__generated__/graphql.types';
 import { map } from 'rxjs/operators';
@@ -18,18 +18,20 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private allOrdersGQL: GetAllOrdersGQL,
-    private onOrderCreatedGQL: OnOrderCreatedGQL,
+    private onNotificationGQL: OnNotificationGQL,
     private createOrderGQL: CreateOrderGQL,
   ) {}
 
   async ngOnInit(): Promise<void> {
     this.orders = await this.fetchOrders();
-    const orderCreatedResult$ = this.onOrderCreatedGQL.subscribe();
-    orderCreatedResult$
-      .pipe(map((result) => result.data?.orderCreated))
-      .subscribe(async (newOrder) => {
-        this.notifications.push(`Order ${newOrder?.id} was created in backend`);
-        this.orders = await this.fetchOrders();
+    this.onNotificationGQL
+      .subscribe()
+      .pipe(map((result) => result.data?.notificationAdded))
+      .subscribe(async (n) => {
+        if (n) {
+          this.notifications.push(n.text);
+          this.orders = await this.fetchOrders();
+        }
       });
   }
 

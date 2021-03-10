@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Order } from '../__generated__/graphql.schema';
 import { FeedResponse } from '@azure/cosmos';
-import { CosmosService } from '../db/cosmos.service';
+import { CosmosService } from '../core/db/cosmos.service';
 
 @Injectable()
-export class OrderRepository {
+export class OrdersRepository {
   constructor(private cosmos: CosmosService) {}
 
   async findAll(): Promise<Order[]> {

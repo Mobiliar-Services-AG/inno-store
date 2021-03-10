@@ -12,9 +12,9 @@ mutation CreateOrder($order: CreateOrderInput!) {
   }
 }
 
-subscription OnOrderCreated {
-  orderCreated {
-    id
-    name
+subscription OnNotification {
+  notificationAdded {
+    text
+    createdAt
   }
 }

@@ -7,10 +7,6 @@ type Mutation {
   createOrder(order: CreateOrderInput): Order
 }
 
-type Subscription {
-  orderCreated: Order
-}
-
 type Order {
   id: String!
   name: String!

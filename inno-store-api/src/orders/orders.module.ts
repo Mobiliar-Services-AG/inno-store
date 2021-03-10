@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { OrderRepository } from './order-repository';
 import { OrdersResolver } from './orders.resolver';
-import { AppConfigModule } from '../app-config/app-config.module';
-import { CosmosService } from '../db/cosmos.service';
+import { CoreModule } from '../core/core.module';
+import { CosmosService } from '../core/db/cosmos.service';
+import { OrdersRepository } from './orders.repository';
 
 @Module({
-  imports: [AppConfigModule],
-  providers: [OrderRepository, OrdersResolver, CosmosService],
+  imports: [CoreModule],
+  providers: [OrdersRepository, OrdersResolver, CosmosService],
 })
 export class OrdersModule {}

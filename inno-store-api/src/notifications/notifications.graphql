@@ -1,0 +1,8 @@
+type Subscription {
+  notificationAdded: Notification
+}
+
+type Notification {
+  createdAt: String!
+  text: String!
+}
