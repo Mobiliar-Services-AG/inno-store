@@ -1,4 +1,4 @@
-name: Inno Store Backend API
+name: Inno Store IaC
 
 on:
   push:
