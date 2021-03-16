@@ -3,7 +3,7 @@ name: Inno Store IaC
 on:
   push:
     branches:
-      - iac
+      - iac-disabled
     paths:
       - 'inno-store-iac/**'
       - '.github/workflows/inno-store-iac.yml'
