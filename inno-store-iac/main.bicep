@@ -1,9 +1,10 @@
 param location string = 'switzerlandnorth'
+param name string = 'inno-store'
 
 module appServicePlanModule './app-service-plan.bicep' = {
   name: 'appServicePlan'
   params: {
-       name: 'inno-store-plan-2'
+       name: '${name}-plan'
        location: location
   }
 }
@@ -11,7 +12,7 @@ module appServicePlanModule './app-service-plan.bicep' = {
 module appServiceWebui './app-service-webui.bicep' = {
   name: 'appServiceWebui'
   params: {
-    name: 'inno-store-webui-2'
+    name: '${name}-app-webui'
     location: location
     appServicePlanID: appServicePlanModule.outputs.appServicePlanID
   }
