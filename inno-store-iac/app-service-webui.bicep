@@ -11,7 +11,7 @@ resource app 'Microsoft.Web/sites@2018-11-01' = {
  }
 }
 
-resource appConfig 'Microsoft.Web/sites/config' = {
+resource appConfig 'Microsoft.Web/sites/config@2018-11-01' = {
   name: '${name}-config'
   location: location
 }
