@@ -15,6 +15,8 @@ module appServiceWebui './app-service-webui.bicep' = {
     name: '${name}-app-webui'
     location: location
     appServicePlanID: appServicePlanModule.outputs.appServicePlanID
+    repoUrl: 'https://github.com/InnoVaders/inno-store.git'
   }
 }
+
 
