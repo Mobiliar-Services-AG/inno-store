@@ -34,5 +34,5 @@ jobs:
       with:
         app-name: 'inno-store-webui'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5567a2817e864fa49c60db8702ea63ed }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_90360224da9343248c5887f5fbcfe327 }}
         package: 'inno-store-webui'
