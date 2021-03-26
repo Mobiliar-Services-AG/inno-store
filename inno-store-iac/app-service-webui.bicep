@@ -15,7 +15,7 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
       appSettings: [
         {
           name: 'WEBSITE_WEBDEPLOY_USE_SCM'
-          value: 'false'
+          value: 'true'
         }
       ]
     }

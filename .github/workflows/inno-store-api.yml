@@ -33,7 +33,7 @@ jobs:
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'inno-store-api'
+          app-name: 'inno-store-01-app-api'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZURE_PUBLISHPROFILE_APP_API }}
           package: 'inno-store-api'
