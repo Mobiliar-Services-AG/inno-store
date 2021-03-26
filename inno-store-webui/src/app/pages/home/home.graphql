@@ -12,6 +12,14 @@ mutation CreateOrder($order: CreateOrderInput!) {
   }
 }
 
+mutation DeleteOrder($orderId: ID!) {
+  deleteOrder(orderId: $orderId) {
+    id,
+    name
+  }
+}
+
+
 subscription OnNotification {
   notificationAdded {
     text

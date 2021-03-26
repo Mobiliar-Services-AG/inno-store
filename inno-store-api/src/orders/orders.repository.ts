@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Order } from '../__generated__/graphql.schema';
-import { FeedResponse } from '@azure/cosmos';
+import { FeedResponse, ItemResponse } from '@azure/cosmos';
 import { CosmosService } from '../core/db/cosmos.service';
 
 @Injectable()
@@ -21,5 +21,12 @@ export class OrdersRepository {
     const container = await this.cosmos.container('orders');
     await container.items.create<Order>(order);
     return order;
+  }
+
+  async deleteOrder(orderId: string): Promise<Order> {
+    const container = await this.cosmos.container('orders');
+    const response: ItemResponse<Order> = await container.item(orderId).read();
+    await container.item(orderId).delete();
+    return response.resource;
   }
 }

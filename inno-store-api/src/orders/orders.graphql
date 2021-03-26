@@ -5,6 +5,7 @@ type Query {
 
 type Mutation {
   createOrder(order: CreateOrderInput): Order
+  deleteOrder(orderId: ID!): Order
 }
 
 type Order {

@@ -18,16 +18,35 @@ export type Scalars = {
   Float: number;
 };
 
-export type Subscription = {
-  __typename?: 'Subscription';
-  notificationAdded?: Maybe<Notification>;
+export type CreateOrderInput = {
+  id: Scalars['String'];
+  name: Scalars['String'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createOrder?: Maybe<Order>;
+  deleteOrder?: Maybe<Order>;
+};
+
+export type MutationCreateOrderArgs = {
+  order?: Maybe<CreateOrderInput>;
+};
+
+export type MutationDeleteOrderArgs = {
+  orderId: Scalars['ID'];
 };
 
 export type Notification = {
   __typename?: 'Notification';
-  timestamp: Scalars['Int'];
-  text: Scalars['String'];
   createdAt: Scalars['String'];
+  text: Scalars['String'];
+};
+
+export type Order = {
+  __typename?: 'Order';
+  id: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type Query = {
@@ -40,24 +59,9 @@ export type QueryOrderArgs = {
   id: Scalars['ID'];
 };
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  createOrder?: Maybe<Order>;
-};
-
-export type MutationCreateOrderArgs = {
-  order?: Maybe<CreateOrderInput>;
-};
-
-export type Order = {
-  __typename?: 'Order';
-  id: Scalars['String'];
-  name: Scalars['String'];
-};
-
-export type CreateOrderInput = {
-  id: Scalars['String'];
-  name: Scalars['String'];
+export type Subscription = {
+  __typename?: 'Subscription';
+  notificationAdded?: Maybe<Notification>;
 };
 
 export type GetAllOrdersQueryVariables = Exact<{ [key: string]: never }>;
@@ -72,6 +76,14 @@ export type CreateOrderMutationVariables = Exact<{
 
 export type CreateOrderMutation = { __typename?: 'Mutation' } & {
   createOrder?: Maybe<{ __typename?: 'Order' } & Pick<Order, 'id' | 'name'>>;
+};
+
+export type DeleteOrderMutationVariables = Exact<{
+  orderId: Scalars['ID'];
+}>;
+
+export type DeleteOrderMutation = { __typename?: 'Mutation' } & {
+  deleteOrder?: Maybe<{ __typename?: 'Order' } & Pick<Order, 'id' | 'name'>>;
 };
 
 export type OnNotificationSubscriptionVariables = Exact<{
@@ -123,6 +135,28 @@ export class CreateOrderGQL extends Apollo.Mutation<
   CreateOrderMutationVariables
 > {
   document = CreateOrderDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const DeleteOrderDocument = gql`
+  mutation DeleteOrder($orderId: ID!) {
+    deleteOrder(orderId: $orderId) {
+      id
+      name
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DeleteOrderGQL extends Apollo.Mutation<
+  DeleteOrderMutation,
+  DeleteOrderMutationVariables
+> {
+  document = DeleteOrderDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

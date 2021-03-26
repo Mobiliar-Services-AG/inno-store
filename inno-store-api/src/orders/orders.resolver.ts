@@ -23,10 +23,22 @@ export class OrdersResolver {
   }
 
   @Mutation()
-  async createOrder(@Args('order') orderInput: CreateOrderInput) {
+  async createOrder(
+    @Args('order') orderInput: CreateOrderInput,
+  ): Promise<Order> {
     const order = await this.orderRepository.createOrder(orderInput);
     this.pubSub.publish<Notification>(PubSubTrigger.NOTIFICATION_ADDED, {
       text: `Order with id ${order.id} inserted in DB`,
+      createdAt: `${new Date().getTime()}`,
+    });
+    return order;
+  }
+
+  @Mutation()
+  async deleteOrder(@Args('orderId') orderId: string): Promise<Order> {
+    const order = await this.orderRepository.deleteOrder(orderId);
+    this.pubSub.publish<Notification>(PubSubTrigger.NOTIFICATION_ADDED, {
+      text: `Deleted Order with id ${orderId} from DB`,
       createdAt: `${new Date().getTime()}`,
     });
     return order;

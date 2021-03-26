@@ -3,7 +3,7 @@
   <h2>Orders</h2>
   <ul>
     <li *ngFor="let order of orders">
-      {{ order?.name }}
+      {{ order?.name }} <button (click)='deleteOrder(order.id)'>delete</button>
     </li>
   </ul>
   <button type="button" (click)="createOrder()">Create Order</button>

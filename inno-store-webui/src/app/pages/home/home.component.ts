@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
   CreateOrderGQL,
+  DeleteOrderGQL,
   GetAllOrdersGQL,
   OnNotificationGQL,
   Order,
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
     private allOrdersGQL: GetAllOrdersGQL,
     private onNotificationGQL: OnNotificationGQL,
     private createOrderGQL: CreateOrderGQL,
+    private deleteOrderGQL: DeleteOrderGQL,
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -56,6 +58,14 @@ export class HomeComponent implements OnInit {
         },
       )
       .pipe(map((res) => res.data.orders))
+      .toPromise();
+  }
+
+  async deleteOrder(orderId: string): Promise<void> {
+    await this.deleteOrderGQL
+      .mutate({
+        orderId,
+      })
       .toPromise();
   }
 }
