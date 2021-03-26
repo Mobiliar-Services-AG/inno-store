@@ -1,8 +1,6 @@
 param location string
 param name string
 param appServicePlanID string
-param repoUrl string
-
 
 resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2020-04-01' = {
   name: '${name}-db'
@@ -49,3 +47,6 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
     }
   }
 }
+
+output apiUrl string = 'https://${app.properties.defaultHostName}'
+output apiWsUrl string = 'wss://${app.properties.defaultHostName}'

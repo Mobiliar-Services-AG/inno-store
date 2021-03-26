@@ -1,7 +1,8 @@
 param location string
 param name string
 param appServicePlanID string
-param repoUrl string
+param apiUrl string
+param apiWsUrl string
 
 resource app 'Microsoft.Web/sites@2020-10-01' = {
   name: name
@@ -14,6 +15,14 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
       scmType: 'None'
       appSettings: [
         {
+          name: 'API_URL'
+          value: apiUrl
+        }
+        {
+          name: 'API_WS_URL'
+          value: apiWsUrl
+        }
+        {
           name: 'WEBSITE_WEBDEPLOY_USE_SCM'
           value: 'true'
         }
@@ -21,18 +30,3 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
     }
   }
 }
-
-// resource appSource 'Microsoft.Web/sites/sourcecontrols@2020-10-01' = {
-//   name: '${app.name}/source'
-//   properties: {
-//     isGitHubAction: false
-//     repoUrl: repoUrl
-//     branch: 'main'
-//     isManualIntegration: true
-//     deploymentRollbackEnabled: true
-//     isMercurial: false
-//   }
-//   dependsOn: [
-//     app
-//   ]
-//}
