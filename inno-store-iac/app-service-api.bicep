@@ -43,7 +43,7 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
         }
         {
           name: 'WEBSITE_WEBDEPLOY_USE_SCM'
-          value: 'true'
+          value: 'false'
         }
       ]
     }
