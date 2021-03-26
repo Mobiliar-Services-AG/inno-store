@@ -30,6 +30,12 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
     siteConfig: {
       alwaysOn: true
       scmType: 'None'
+      cors: {
+        allowedOrigins: [
+          '*'
+        ]
+      }
+      webSocketsEnabled: true
       linuxFxVersion: 'NODE|12-lts'
       appSettings: [
         {

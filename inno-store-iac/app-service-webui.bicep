@@ -14,6 +14,7 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
       alwaysOn: true
       scmType: 'None'
       linuxFxVersion: 'NODE|12-lts'
+      webSocketsEnabled: true
       appSettings: [
         {
           name: 'API_URL'

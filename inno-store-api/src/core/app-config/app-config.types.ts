@@ -1,7 +1,7 @@
 export interface EnvironmentVariables {
   WEB_UI_URL: string;
-  CUSTOMCONNSTR_COSMOSDB_ENDPOINT: string;
-  CUSTOMCONNSTR_COSMOSDB_KEY: string;
+  COSMOSDB_ENDPOINT: string;
+  COSMOSDB_KEY: string;
 }
 
 export interface CosmosDbConfig {
