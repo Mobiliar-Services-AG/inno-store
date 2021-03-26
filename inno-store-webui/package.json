@@ -15,7 +15,7 @@
     "serve:ssr": "node dist/inno-store-webui/server/main.js",
     "build:ssr": "cross-env NODE_ENV=production ng build --prod && ng run inno-store-webui:server:production",
     "prerender": "ng run inno-store-webui:prerender",
-    "ci:bundle-azure-deployment" : "ts-node ./scripts/bundle-azure-deployment.ts"
+    "ci:bundle-azure-deployment": "ts-node ./scripts/bundle-azure-deployment.ts"
   },
   "private": true,
   "dependencies": {

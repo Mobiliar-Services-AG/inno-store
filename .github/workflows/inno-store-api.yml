@@ -29,6 +29,7 @@ jobs:
           npm install
           npm run build
           npm run test
+          npm prune --production
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
