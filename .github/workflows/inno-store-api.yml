@@ -35,5 +35,5 @@ jobs:
         with:
           app-name: 'inno-store-api'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_90360224da9343248c5887f5fbcfe327 }}
+          publish-profile: ${{ secrets.AZURE_PUBLISHPROFILE_APP_API }}
           package: 'inno-store-api'
