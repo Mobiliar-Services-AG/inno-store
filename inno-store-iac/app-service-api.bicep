@@ -31,7 +31,7 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
     serverFarmId: appServicePlanID
     siteConfig: {
       alwaysOn: true
-      scmType: 'ExternalGit'
+      scmType: 'None'
       appSettings: [
         {
           name: 'COSMOSDB_ENDPOINT'
