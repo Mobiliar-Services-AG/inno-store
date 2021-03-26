@@ -12,6 +12,12 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
     siteConfig: {
       alwaysOn: true
       scmType: 'ExternalGit'
+      appSettings: [
+        {
+          name: 'WEBSITE_WEBDEPLOY_USE_SCM'
+          value: 'true'
+        }
+      ]
     }
   }
 }

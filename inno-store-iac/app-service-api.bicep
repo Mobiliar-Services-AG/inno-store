@@ -41,6 +41,10 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
           name: 'COSMOSDB_KEY'
           value: listKeys(cosmos.id, cosmos.apiVersion).primaryMasterKey
         }
+        {
+          name: 'WEBSITE_WEBDEPLOY_USE_SCM'
+          value: 'true'
+        }
       ]
     }
   }
