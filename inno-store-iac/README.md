@@ -1,6 +1,6 @@
 # Deploy IaC
 
-    az deployment group create -f .\inno-store-iac\main.bicep -g inno-store
+    az deployment group create -f .\inno-store-iac\main.bicep -g inno-store-rg
 
 ## Compile biceps
 
