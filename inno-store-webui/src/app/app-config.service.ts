@@ -17,7 +17,10 @@ export class AppConfigService {
   async load(): Promise<AppConfig> {
     if (isPlatformServer(this.platformId)) {
       this.appConfig = getAppConfigFromProcessEnv();
-      console.info('requested appconfig from env variables: ' + JSON.stringify(this.appConfig));
+      console.info(
+        'requested appconfig from env variables: ' +
+          JSON.stringify(this.appConfig),
+      );
       return Promise.resolve(this.appConfig);
     } else {
       this.appConfig = await this.http.get<AppConfig>('/config').toPromise();

@@ -9,8 +9,8 @@ export class AppConfigService {
   appConfig(): AppConfig {
     return {
       cosmosDb: {
-        endpoint: this.configService.get('CUSTOMCONNSTR_COSMOSDB_ENDPOINT'),
-        key: this.configService.get('CUSTOMCONNSTR_COSMOSDB_KEY'),
+        endpoint: this.configService.get('COSMOSDB_ENDPOINT'),
+        key: this.configService.get('COSMOSDB_KEY'),
       },
     };
   }
