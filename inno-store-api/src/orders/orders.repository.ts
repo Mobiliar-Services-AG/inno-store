@@ -19,7 +19,7 @@ export class OrdersRepository {
 
   async createOrder(order: Order): Promise<Order> {
     const container = await this.cosmos.container('orders');
-    const response = await container.items.create<Order>(order);
+    await container.items.create<Order>(order);
     return order;
   }
 }

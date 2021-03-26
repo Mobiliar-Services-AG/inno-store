@@ -55,5 +55,5 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
   }
 }
 
-output apiUrl string = 'https://${app.properties.defaultHostName}'
-output apiWsUrl string = 'wss://${app.properties.defaultHostName}'
+output apiUrl string = 'https://${app.properties.defaultHostName}/graphql'
+output apiWsUrl string = 'wss://${app.properties.defaultHostName}/graphql'
