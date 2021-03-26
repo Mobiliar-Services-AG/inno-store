@@ -7,7 +7,7 @@ query GetAllOrders {
 
 mutation CreateOrder($order: CreateOrderInput!) {
   createOrder(order: $order) {
-    id,
+    id
     name
   }
 }
