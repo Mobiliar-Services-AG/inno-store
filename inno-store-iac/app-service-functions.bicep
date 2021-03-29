@@ -2,6 +2,8 @@ param location string
 param name string
 param storageName string
 param appServicePlanID string
+param serviceBusConnection string
+param cosmosDbConnection string
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-01-01' = {
   name: storageName
@@ -47,6 +49,14 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
           value: 'node'
+        }
+        {
+          name: 'SERVICE_BUS_CONNECTION'
+          value: serviceBusConnection
+        }
+        {
+          name: 'COSMOSDB_CONNECTION'
+          value: cosmosDbConnection
         }
         {
           name: 'AzureWebJobsStorage'
