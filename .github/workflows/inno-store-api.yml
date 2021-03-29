@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - functions
     paths:
       - 'inno-store-api/**'
       - '.github/workflows/inno-store-api.yml'
@@ -18,6 +19,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@main
+
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Set up Node.js version
         uses: actions/setup-node@v1
@@ -34,7 +40,6 @@ jobs:
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'inno-store-02-app-api'
+          app-name: '${{ secrets.PROJECT_NAME }}-api'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AZURE_PUBLISHPROFILE_APP_API }}
           package: 'inno-store-api'

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - functions
     paths:
       - 'inno-store-iac/**'
       - '.github/workflows/inno-store-iac.yml'
@@ -40,6 +41,7 @@ jobs:
           resourceGroupName: ${{ secrets.AZURE_RESOURCEGROUP }}
           template: inno-store-iac/main.json
           parameters: name=${{ secrets.PROJECT_NAME }}
+
 
         # output containerName variable from template
       - run: echo ${{ steps.deploy.outputs.containerName }}
