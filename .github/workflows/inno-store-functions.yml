@@ -1,0 +1,44 @@
+name: Inno Store Functions
+
+on:
+  push:
+    branches:
+      - main
+      - functions
+    paths:
+      - 'inno-store-functions/**'
+      - '.github/workflows/inno-store-functions.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: inno-store-functions
+
+    steps:
+      - uses: actions/checkout@main
+
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build
+          npm run ci:bundle-azure-deployment
+
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'inno-store-02-app-functions'
+          slot-name: 'production'
+          package: 'inno-store-functions'

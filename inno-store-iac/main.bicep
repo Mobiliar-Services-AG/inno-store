@@ -29,5 +29,14 @@ module appWebUi './app-service-webui.bicep' = {
   }
 }
 
+module appFunctions './app-service-functions.bicep' = {
+  name: 'appServiceFunctions'
+  params: {
+    name: '${name}-app-functions'
+    location: location
+    appServicePlanID: appServicePlan.outputs.appServicePlanID
+  }
+}
+
 
 
