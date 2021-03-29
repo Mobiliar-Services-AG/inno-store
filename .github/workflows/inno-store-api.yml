@@ -40,6 +40,6 @@ jobs:
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'inno-store-02-app-api'
+          app-name: '${{ secrets.PROJECT_NAME }}-api'
           slot-name: 'production'
           package: 'inno-store-api'

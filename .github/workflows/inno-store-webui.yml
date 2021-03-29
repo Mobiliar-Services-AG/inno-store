@@ -40,7 +40,7 @@ jobs:
         id: 'deployToAzure'
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'inno-store-02-app-webui'
+          app-name: '${{ secrets.PROJECT_NAME }}-webui'
           slot-name: 'production'
           package: 'inno-store-webui/dist/dist.zip'
 
@@ -48,6 +48,6 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_TITLE: 'Deployed WebUI'
           SLACK_FOOTER: ${{ steps.deployToAzure.outputs.webapp-url }}
           SLACK_USERNAME: 'InnoVaderBot'
-
