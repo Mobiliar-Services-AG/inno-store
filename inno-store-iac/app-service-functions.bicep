@@ -3,7 +3,7 @@ param name string
 param storageName string
 param appServicePlanID string
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2021-01-01' = {
   name: storageName
   location: location
   sku: {
