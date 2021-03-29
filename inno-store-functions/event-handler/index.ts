@@ -6,6 +6,7 @@ const cosmosDBTrigger: AzureFunction = async function (
 ): Promise<void> {
   if (!!documents && documents.length > 0) {
     context.log('Document Id: ', documents[0].id);
+    context.bindings.outputSbQueue.push(documents);
   }
 };
 

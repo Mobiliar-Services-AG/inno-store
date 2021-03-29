@@ -9,6 +9,13 @@
       "databaseName": "inno-store",
       "collectionName": "orders",
       "createLeaseCollectionIfNotExists": true
+    },
+    {
+      "name": "outputSbQueue",
+      "type": "serviceBus",
+      "queueName": "%SERVICE_BUS_QUEUE%",
+      "connection": "SERVICE_BUS_CONNECTION",
+      "direction": "out"
     }
   ]
 }
