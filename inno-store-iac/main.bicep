@@ -1,6 +1,14 @@
 param location string = 'switzerlandnorth'
 param name string = 'inno-store-02'
 
+module db './db.bicep' = {
+  name: 'db'
+  params: {
+    name: '${name}-db'
+    location: location
+  }
+}
+
 module appServicePlan './app-service-plan.bicep' = {
   name: 'appServicePlan'
   params: {
@@ -15,6 +23,8 @@ module appApi './app-service-api.bicep' = {
     name: '${name}-api'
     location: location
     appServicePlanID: appServicePlan.outputs.appServicePlanID
+    cosmosEndpoint: db.outputs.cosmosEndpoint
+    cosmosKey: db.outputs.cosmosKey
   }
 }
 
@@ -32,7 +42,7 @@ module appWebUi './app-service-webui.bicep' = {
 module appFunctions './app-service-functions.bicep' = {
   name: 'appServiceFunctions'
   params: {
-    name: '${name}-app-functions'
+    name: '${name}-functions'
     storageName: '${name}storage'
     location: location
     appServicePlanID: appServicePlan.outputs.appServicePlanID

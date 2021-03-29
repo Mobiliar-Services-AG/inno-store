@@ -1,25 +1,8 @@
 param location string
 param name string
 param appServicePlanID string
-
-resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2020-04-01' = {
-  name: '${name}-db'
-  location: location
-  kind: 'GlobalDocumentDB'
-  properties: {
-    consistencyPolicy: {
-      defaultConsistencyLevel: 'Session'
-    }
-    locations: [
-      {
-        locationName: location
-        failoverPriority: 0
-        isZoneRedundant: false
-      }
-    ]
-    databaseAccountOfferType: 'Standard'
-  }
-}
+param cosmosEndpoint string 
+param cosmosKey string 
 
 resource app 'Microsoft.Web/sites@2020-10-01' = {
   name: name
@@ -40,11 +23,11 @@ resource app 'Microsoft.Web/sites@2020-10-01' = {
       appSettings: [
         {
           name: 'COSMOSDB_ENDPOINT'
-          value: cosmos.properties.documentEndpoint
+          value: cosmosEndpoint
         }
         {
           name: 'COSMOSDB_KEY'
-          value: listKeys(cosmos.id, cosmos.apiVersion).primaryMasterKey
+          value: cosmosKey
         }
         {
           name: 'WEBSITE_WEBDEPLOY_USE_SCM'
